@@ -9,11 +9,16 @@
 ## Алгоритмость решения
 
 * Чтение из файла в буффер 
-* Создание массива указателей ('index'), а также его копии ('copyindex') для последущего вывода неотсортированной версии Онегиности.
-* Сортировка алгоритмом QuickSort с использование собственного компоратора для строк, а также обратного компоратора. Первая сортировка происходит встроенным алгоритмом quicksort ('#include <stdlib.h>'), вторая сортировка происходим собственным алогритмом myquicksort.
+* Создание массива структур ('index'), а также его копии ('copyindex') для последущего вывода неотсортированной версии Онегиности.
+* Сортировка алгоритмом QuickSort с использование собственного компоратора для строк, а также обратного компоратора. Первая сортировка происходит встроенным алгоритмом 'qsort()' ('#include <stdlib.h>'), вторая сортировка происходим собственным алогритмом 'myqsort()'.
 * Вывод всех сортировка в файл 'Sorted Onegin.txt'.
 
 ## Запускность программы
+Для запуска программы необходимо ее скопилировать. Для этого можно использовать следующие флаги:
 
+text```
+g++ main.cpp -Wshadow -Winit-self -Wredundant-decls -Wcast-align -Wundef -Wfloat-equal -Winline -Wunreachable-code -Wmissing-declarations -Wmissing-include-dirs -Wswitch-enum -Wswitch-default -Weffc++ -Wmain -Wextra -Wall -g -pipe -fexceptions -Wcast-qual -Wconversion -Wctor-dtor-privacy -Wempty-body -Wformat-security -Wformat=2 -Wignored-qualifiers -Wlogical-op -Wno-missing-field-initializers -Wnon-virtual-dtor -Woverloaded-virtual -Wpointer-arith -Wsign-promo -Wstack-usage=8192 -Wstrict-aliasing -Wstrict-null-sentinel -Wtype-limits -Wwrite-strings -Werror=vla -D_DEBUG -D_EJUDGE_CLIENT_SIDE
+
+```
 
 ## 
