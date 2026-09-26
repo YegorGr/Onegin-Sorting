@@ -37,3 +37,6 @@ g++ main.cpp -Wshadow -Winit-self -Wredundant-decls -Wcast-align -Wundef -Wfloat
 
 ### Функциразбиваемость 
 Модульная программа, гениальный main.
+
+## Ассертность 
+Добавлено большое кол-во ассертов. Для запуска в отладочном режиме уберите `#define NDEBUG`
