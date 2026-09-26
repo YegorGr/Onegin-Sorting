@@ -8,6 +8,8 @@
 #include <assert.h>
 #include <errno.h>
 
+#define NDEBUG
+
 #define HINT    "\x1b[93m"            //!< Sand color (yellow but light yellow)
 #define SUCCESS "\x1b[38;5;46m"       //!< Bright green color (specially for success)
 #define BOLD    "\x1b[1m"             //!< Very fat (like me)
@@ -64,15 +66,18 @@ int main (int argc, const char* argv[])
     }
 
     qsort(data.index, data.strings, sizeof(String), &CompareStr);
-    WriteToFile(data.index, data.strings, data.file, "\n\n- - - - - THE FIRST SORTING (TO A TO Z) - - - - - \n\n");
-    printf(SUCCESS "\nSuccess to put sorted text to file!" RESET); 
+    if (WriteToFile(data.index, data.strings, data.file, 
+        "\n\n- - - - - THE FIRST SORTING (TO A TO Z) - - - - - \n\n") == 0)
+        printf(SUCCESS "\nSuccess to put sorted text to file!" RESET); 
     
     myqsort(data.index, data.strings, sizeof(String), &CompareStrInvers);
-    WriteToFile(data.index, data.strings, data.file, "\n\n- - - - - END SORTING (Z TO A) - - - - - \n\n");
-    printf(SUCCESS "\nSuccess to put reverse sorted text to file!" RESET); 
+    if (WriteToFile(data.index, data.strings, data.file, 
+        "\n\n- - - - - END SORTING (Z TO A) - - - - - \n\n") == 0)
+        printf(SUCCESS "\nSuccess to put reverse sorted text to file!" RESET); 
 
-    WriteToFile(data.copyindex, data.strings, data.file, "\n\n- - - - - NOT SORTED - - - - - \n\n");
-    printf(SUCCESS "\nSuccess to put NOT sorted text to file!\n" RESET); 
+    if (WriteToFile(data.copyindex, data.strings, data.file, 
+        "\n\n- - - - - NOT SORTED - - - - - \n\n") == 0)
+        printf(SUCCESS "\nSuccess to put NOT sorted text to file!\n" RESET); 
 
     fclose(data.file);
     FreeMem(&data);
@@ -116,6 +121,8 @@ FileInfo GetFileInfo (int argc, const char** argv)
 
 void FreeMem (FileInfo* ptr_data)
 {
+    assert(ptr_data != NULL);
+
     free(ptr_data->copyindex);
     ptr_data->copyindex = NULL;
 
@@ -191,6 +198,8 @@ char* CopyFromFile (int descriptor, size_t size_array)
 
 size_t CountStrings (char* buffer)
 {
+    assert(buffer != NULL);
+
     size_t strings = 1;
     char* ptr = buffer;
 
@@ -230,6 +239,8 @@ String* StringsArray (char* buffer, size_t strings)
 
 String* CopyIndex (String* index, size_t strings)
 {
+    assert(index != NULL);
+
     String* copyindex = (String*) calloc(strings, sizeof(String));
 
     for (size_t i = 0; i < strings; i++)
@@ -263,6 +274,8 @@ int WriteToFile (String* index, size_t strings, FILE* file, const char* header)
 
 int HasLetters (const char* str)
 {
+    assert(str != NULL);
+
     while (*str != '\0')
     {
         if (isalpha((unsigned char)*str))
@@ -390,10 +403,13 @@ int CompareStr(const void* a, const void* b)
 
 void Swap (void* val1, void* val2, size_t size_elem)
 {
+    assert(val1 != NULL);
+    assert(val2 != NULL);
+
     char* p1 = (char*) val1;
     char* p2 = (char*) val2;
 
-    for (size_t i = 0; i < size_elem; i++)
+    for (size_t i = 0; i < size_elem; i++) 
     {
         char p_temp = *p1;
 
