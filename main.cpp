@@ -1,3 +1,5 @@
+#define NDEBUG
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -7,8 +9,6 @@
 #include <fcntl.h>
 #include <assert.h>
 #include <errno.h>
-
-#define NDEBUG
 
 #define HINT    "\x1b[93m"            //!< Sand color (yellow but light yellow)
 #define SUCCESS "\x1b[38;5;46m"       //!< Bright green color (specially for success)
